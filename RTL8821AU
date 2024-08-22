@@ -35,13 +35,13 @@ sleep 2
 clear
 
 printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m CLONING RTL8821AU \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
-git clone https://github.com/morrownr/8821au-20210708.git RTL8821AU
+git clone https://github.com/morrownr/8821au-20210708.git RTL8821AU-DRIVER
 printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m DONE \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
 sleep 2
 clear
 
 printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m INSTALLING RTL8821AU \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
-cd RTL8821AU
+cd RTL8821AU-DRIVER
 sudo bash install-driver.sh
 
 
