@@ -1,0 +1,46 @@
+#!/bin/bash
+#coded by X-NeonSec-X
+
+# Init
+FILE="/tmp/out.$$"
+GREP="/bin/grep"
+#....
+# Make sure only root can run our script
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+# ...
+clear
+printf "
+
+
+                  ██████╗  ████████╗ ██╗       █████╗   █████╗  ██████╗   ██╗  █████╗  ██╗   ██╗
+                  ██╔══██╗ ╚══██╔══╝ ██║      ██╔══██╗ ██╔══██╗ ╚════██╗ ███║ ██╔══██╗ ██║   ██║
+                  ██████╔╝    ██║    ██║      ╚█████╔╝ ╚█████╔╝  █████╔╝ ╚██║ ███████║ ██║   ██║
+                  ██╔══██╗    ██║    ██║      ██╔══██╗ ██╔══██╗ ██╔═══╝   ██║ ██╔══██║ ██║   ██║
+                  ██║  ██║    ██║    ███████╗ ╚█████╔╝ ╚█████╔╝ ███████╗  ██║ ██║  ██║ ╚██████╔╝
+                  ╚═╝  ╚═╝    ╚═╝    ╚══════╝  ╚════╝   ╚════╝  ╚══════╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ "
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m UPDATING & UPGRADING \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+sudo apt update -y && sudo apt upgrade -y
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m DONE \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+sleep 2
+clear
+
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m INSTALLING REQUIRED PACKAGES \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+sudo apt install -y linux-headers-$(uname -r) build-essential bc dkms git libelf-dev rfkill iw
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m DONE \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+sleep 2
+clear
+
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m CLONING RTL8821AU \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+git clone https://github.com/morrownr/8821au-20210708.git RTL8821AU
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m DONE \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+sleep 2
+clear
+
+printf "\e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m INSTALLING RTL8821AU \e[1;31m[\e[0m\e[1;77m~\e[0m\e[1;31m]\e[0m\e[1;92m"
+cd RTL8821AU
+sudo bash install-driver.sh
+
+
